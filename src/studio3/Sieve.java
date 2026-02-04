@@ -1,22 +1,27 @@
 import java.util.Scanner;
+
 public class Sieve {
     public static void main(String[] args) {
-    Scanner in = new Scanner(System.in);
-    int p = 2;
-    System.out.println("Enter the value for n: ");
-    int n = in.nextInt();
-    boolean[] set = new boolean[n];
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter the value for n: ");
+        int n = in.nextInt();
+        boolean[] set = new boolean[n];
 
-    for (int i = 0; i < n; i++) {
-        set[i] = true;
-    }
-
-    while (p < n && p < Math.sqrt(n)) {
-    set[2 * p] = false;
-    
-    p++;
-    }
-
+        for (int i = 0; i < n; i++) {
+            set[i] = true;
+        }
+        for (int i = 2; i < Math.sqrt(n); i++) {
+            if (set[i] == true) {
+                for (int j = (i * i); j < n; j = j + i) {
+                    set[j] = false;
+                }
+            }
+        }
+        for (int i = 2; i < n; i++) {
+            if (set[i] == true) {
+                System.out.println(i);
+            }
+        }
 
     }
 }
